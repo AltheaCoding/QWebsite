@@ -1,295 +1,548 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="https://github.com/AltheaCoding/image-hosting/blob/main/QRARicon.png?raw=true" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>QRAR Lost & Found Center</title>
+    <title>QRAR - 快速回應與答覆，杜絕兒童走失</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- React and ReactDOM -->
-    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-    <!-- Babel to transpile JSX in the browser -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Noto Sans TC', sans-serif;
+      }
+    </style>
   </head>
-  <body class="bg-slate-50">
-    <div id="root"></div>
+  <body class="bg-white text-gray-800">
+    <!-- Header -->
+    <header class="bg-amber-50 sticky top-0 z-50 shadow-md">
+      <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="text-3xl font-black text-gray-800">QRAR</div>
+        
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="#features" class="text-gray-600 hover:text-green-600 transition-colors">為什麼選擇我們</a>
+          <a href="#scenarios" class="text-gray-600 hover:text-green-600 transition-colors">適用場景</a>
+          <a href="#how-it-works" class="text-gray-600 hover:text-green-600 transition-colors">使用流程</a>
+          <a href="#pricing" class="text-gray-600 hover:text-green-600 transition-colors">價格方案</a>
+          <a href="#usecases" class="text-gray-600 hover:text-green-600 transition-colors">其他用途</a>
+          <a href="#faq" class="text-gray-600 hover:text-green-600 transition-colors">常見問題</a>
+        </nav>
+        
+        <a href="#pricing" class="hidden md:block bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-full shadow-lg transition-transform transform hover:scale-105">
+          立即購買
+        </a>
 
-    <script type="text/babel">
-      // De-structure React hooks for convenience
-      const { useState } = React;
-
-      // --- From components/Icons.tsx ---
-      const ShieldCheckIcon = ({ className }) => (
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          viewBox="0 0 24 24" 
-          fill="currentColor" 
-          className={`w-5 h-5 ${className}`}
-        >
-          <path fillRule="evenodd" d="M12 1.5a.75.75 0 01.75.75v1.511c.75.113 1.47.365 2.164.739a.75.75 0 01-.288 1.423A6.743 6.743 0 0012 5.25a6.743 6.743 0 00-2.625.923.75.75 0 01-.288-1.423 8.22 8.22 0 012.164-.74V2.25A.75.75 0 0112 1.5zm-3.834 6.012a.75.75 0 011.06 0l1.244 1.243 2.2-2.201a.75.75 0 011.062 1.06l-2.75 2.75a.75.75 0 01-1.06 0L8.166 9.632a.75.75 0 010-1.06z" clipRule="evenodd" />
-          <path d="M3.283 8.943c.095-.246.223-.483.374-.707l.001-.002 4.474-6.102a.75.75 0 011.23.906L5.34 9.402a.75.75 0 01-1.23-.906l-.002.002c-.08-.108-.155-.219-.224-.332a5.25 5.25 0 00-5.83-8.683.75.75 0 01-.58 1.353 6.75 6.75 0 017.514 11.086 44.92 44.92 0 01.488 1.493.75.75 0 11-1.423.493 46.409 46.409 0 00-.47-1.442l-.003-.007a5.25 5.25 0 00-6.815-9.45zM20.717 8.943c-.095-.246-.223-.483-.374-.707l-.001-.002-4.474-6.102a.75.75 0 00-1.23.906L18.66 9.402a.75.75 0 001.23-.906l.002.002c.08-.108.155-.219.224-.332a5.25 5.25 0 015.83-8.683.75.75 0 00.58 1.353 6.75 6.75 0 00-7.514 11.086 44.92 44.92 0 00-.488 1.493.75.75 0 101.423.493 46.409 46.409 0 01.47-1.442l.003-.007a5.25 5.25 0 016.815-9.45z" />
-        </svg>
-      );
-
-      const CloseIcon = ({ className }) => (
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          fill="none" 
-          viewBox="0 0 24 24" 
-          strokeWidth={1.5} 
-          stroke="currentColor" 
-          className={`w-6 h-6 ${className}`}
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      );
-
-      const ChevronDownIcon = ({ className }) => (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className={`w-6 h-6 ${className}`}
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-        </svg>
-      );
-
-      // --- From components/Buttons.tsx ---
-      const PrimaryButton = ({ children, ...props }) => {
-        return (
-          <button
-            {...props}
-            className="w-full flex items-center justify-center gap-3 bg-[#1C2D4A] text-white font-bold py-3 px-4 rounded-lg hover:bg-[#2a4268] focus:outline-none focus:ring-4 focus:ring-[#1C2D4A]/50 transition-all duration-300 ease-in-out transform hover:scale-105"
-          >
-            {children}
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden">
+          <button id="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false" class="text-gray-800 focus:outline-none">
+            <svg id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+            <svg id="menu-icon-close" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
           </button>
-        );
-      };
+        </div>
+      </div>
 
-      const SecondaryButton = ({ children, ...props }) => {
-        return (
-          <button
-            {...props}
-            className="w-full flex items-center justify-center gap-2 bg-white text-[#1C2D4A] font-semibold py-3 px-4 rounded-lg border border-[#1C2D4A] hover:bg-[#1C2D4A]/10 focus:outline-none focus:ring-4 focus:ring-[#1C2D4A]/50 transition-colors duration-300"
-          >
-            {children}
-          </button>
-        );
-      };
+      <!-- Mobile Menu Dropdown -->
+      <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-amber-50/95 backdrop-blur-sm shadow-lg transform transition-all duration-300 ease-in-out opacity-0 -translate-y-4 pointer-events-none">
+        <nav class="flex flex-col items-center p-4 space-y-2">
+          <a href="#features" class="text-gray-800 text-lg font-semibold py-3 px-6 hover:bg-green-100 rounded-md w-full text-center transition-colors">為什麼選擇我們</a>
+          <a href="#scenarios" class="text-gray-800 text-lg font-semibold py-3 px-6 hover:bg-green-100 rounded-md w-full text-center transition-colors">適用場景</a>
+          <a href="#how-it-works" class="text-gray-800 text-lg font-semibold py-3 px-6 hover:bg-green-100 rounded-md w-full text-center transition-colors">使用流程</a>
+          <a href="#pricing" class="text-gray-800 text-lg font-semibold py-3 px-6 hover:bg-green-100 rounded-md w-full text-center transition-colors">價格方案</a>
+          <a href="#usecases" class="text-gray-800 text-lg font-semibold py-3 px-6 hover:bg-green-100 rounded-md w-full text-center transition-colors">其他用途</a>
+          <a href="#faq" class="text-gray-800 text-lg font-semibold py-3 px-6 hover:bg-green-100 rounded-md w-full text-center transition-colors">常見問題</a>
+          <a href="#pricing" class="mt-4 w-11/12 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-transform transform hover:scale-105">
+            立即購買
+          </a>
+        </nav>
+      </div>
+    </header>
 
-      // --- From components/ContactModal.tsx ---
-      const ContactModal = ({ isOpen, onClose }) => {
-        if (!isOpen) return null;
+    <main>
+      <!-- Hero Section -->
+      <section class="bg-amber-50 pt-16 pb-24">
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+          <div class="text-center md:text-left">
+            <h1 class="text-6xl md:text-8xl font-black text-gray-800 tracking-tight">QRAR</h1>
+            <p class="text-xl md:text-2xl font-semibold text-gray-600">
+              Quick Response<br />and Reply
+            </p>
+            <h2 class="mt-4 text-2xl md:text-3xl font-bold text-gray-700">
+              快速回應與答覆，杜絕兒童走失
+            </h2>
+            <p class="mt-6 text-lg text-gray-600 max-w-2xl mx-auto md:mx-0">
+              「一個小小QR碼，守護孩子大大安全」
+              <br/>
+              讓每一次出門，都多一層安心。
+            </p>
+            <a href="#pricing" class="mt-8 inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-10 rounded-full shadow-xl transition-transform transform hover:scale-105 text-lg">
+              查看方案
+            </a>
+          </div>
+           <div class="relative">
+               <img 
+                  src="https://cdn.jsdelivr.net/gh/AltheaCoding/image-hosting@main/Google_AI_Studio_2025-09-10T15_13_10.336Z.png" 
+                  alt="Happy mother and child, representing the security QRAR provides" 
+                  class="rounded-2xl shadow-2xl w-full h-auto object-cover"
+                />
+                <div class="absolute -bottom-4 -right-4 bg-white p-6 rounded-2xl shadow-lg animate-pulse">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-green-600" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M4,4H10V10H4V4M6,6V8H8V6H6M4,14H10V20H4V14M6,16V18H8V16H6M14,4H20V10H14V4M16,6V8H18V6H16M14,14H16V16H14V14M18,14H20V16H18V14M16,18H18V20H16V18M18,18H20V20H18V18M12,12H14V14H12V12M14,10H16V12H14V10M16,12H18V14H16V12M12,14H14V16H12V14M10,12H12V14H10V12Z" />
+                  </svg>
+                </div>
+            </div>
+          </div>
+      </section>
 
-        return (
-          <div 
-            className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4 transition-opacity duration-300"
-            onClick={onClose}
-          >
-            <div 
-              className="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 md:p-8 space-y-6 relative transform transition-all duration-300 scale-95 opacity-0 animate-fade-in-scale"
-              onClick={(e) => e.stopPropagation()}
-              style={{ animation: 'fade-in-scale 0.3s forwards' }}
-            >
-              <button onClick={onClose} className="absolute top-4 right-4 text-slate-500 hover:text-slate-800 transition-colors">
-                <CloseIcon />
+      <!-- Intro Section -->
+      <section id="intro" class="py-20 bg-white">
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+          <div class="order-2 md:order-1">
+            <img 
+              src="https://github.com/AltheaCoding/image-hosting/blob/main/intro.png?raw=true" 
+              alt="QRAR sticker on a child's backpack" 
+              class="rounded-2xl shadow-xl w-full h-auto object-cover"
+            />
+          </div>
+          <div class="order-1 md:order-2">
+            <h2 class="text-3xl font-bold text-gray-800">孩子走失只需要一瞬間。</h2>
+            <p class="mt-4 text-lg text-gray-600">
+              【QRAR.com】防走失吊牌，透過 QRcode + PIN 雙重安全設計，幫助好心人快速掃碼聯繫家長，既簡單快速也不用安裝APP，一掃就能快速聯繫，協助孩子平安回家。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section id="features" class="py-20 bg-green-50 scroll-mt-20">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2 class="text-4xl font-black text-gray-800">為什麼選擇我們</h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-7xl mx-auto">
+            <div class="relative group rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden aspect-[21/9]">
+              <img src="https://github.com/AltheaCoding/image-hosting/blob/main/Affordable%20%20Can%20Stick%20Anywhere.png?raw=true" alt="價格實惠" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              <div class="relative h-full flex flex-col justify-end items-start text-left p-6">
+                <h3 class="text-3xl font-bold text-white drop-shadow-md mb-1">價格實惠</h3>
+                <p class="text-lg font-medium text-gray-200 drop-shadow-md">可貼各個地方</p>
+              </div>
+            </div>
+            <div class="relative group rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden aspect-[21/9]">
+              <img src="https://github.com/AltheaCoding/image-hosting/blob/main/Waterproof%20&%20Durable.png?raw=true" alt="防水耐用" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              <div class="relative h-full flex flex-col justify-end items-start text-left p-6">
+                <h3 class="text-3xl font-bold text-white drop-shadow-md mb-1">防水耐用</h3>
+                <p class="text-lg font-medium text-gray-200 drop-shadow-md">衣服、書包、鞋子都可使用</p>
+              </div>
+            </div>
+            <div class="relative group rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden aspect-[21/9]">
+              <img src="https://github.com/AltheaCoding/image-hosting/blob/main/Easy%20to%20Use.png?raw=true" alt="簡單使用" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              <div class="relative h-full flex flex-col justify-end items-start text-left p-6">
+                <h3 class="text-3xl font-bold text-white drop-shadow-md mb-1">簡單使用</h3>
+                <p class="text-lg font-medium text-gray-200 drop-shadow-md">掃碼即可聯絡</p>
+              </div>
+            </div>
+            <div class="relative group rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden aspect-[21/9]">
+              <img src="https://github.com/AltheaCoding/image-hosting/blob/main/Multiple%20Designs%20%20Kids%20Love%20Them.png?raw=true" alt="多種款式" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              <div class="relative h-full flex flex-col justify-end items-start text-left p-6">
+                <h3 class="text-3xl font-bold text-white drop-shadow-md mb-1">多種款式</h3>
+                <p class="text-lg font-medium text-gray-200 drop-shadow-md">孩子喜愛!也不怕丟!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Scenarios Section -->
+      <section id="scenarios" class="py-20 bg-white scroll-mt-20">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2 class="text-4xl font-black text-gray-800">適用場景</h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+            <div class="relative group overflow-hidden rounded-2xl shadow-lg">
+              <img src="https://github.com/AltheaCoding/image-hosting/blob/main/Shopping%20Mall%20%20Night%20Market.png?raw=true" alt="逛百貨商場、夜市或大型活動" class="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+              <div class="absolute bottom-0 left-0 p-6">
+                <h3 class="text-white text-2xl font-bold drop-shadow-lg">逛百貨商場、夜市或大型活動</h3>
+              </div>
+            </div>
+            <div class="relative group overflow-hidden rounded-2xl shadow-lg">
+              <img src="https://github.com/AltheaCoding/image-hosting/blob/main/After-School%20%20Hobby%20Class.png?raw=true" alt="上安親班、才藝課或放學接送" class="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+              <div class="absolute bottom-0 left-0 p-6">
+                <h3 class="text-white text-2xl font-bold drop-shadow-lg">上安親班、才藝課或放學接送</h3>
+              </div>
+            </div>
+            <div class="relative group overflow-hidden rounded-2xl shadow-lg">
+              <img src="https://github.com/AltheaCoding/image-hosting/blob/main/Tourist%20Spot%20%20Theme%20Park%20%20Zoo.png?raw=true" alt="觀光景點、遊樂園、動物園" class="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+              <div class="absolute bottom-0 left-0 p-6">
+                <h3 class="text-white text-2xl font-bold drop-shadow-lg">觀光景點、遊樂園、動物園</h3>
+              </div>
+            </div>
+            <div class="relative group overflow-hidden rounded-2xl shadow-lg">
+              <img src="https://github.com/AltheaCoding/image-hosting/blob/main/Family%20Domestic%20%20Cross-City%20Travel.png?raw=true" alt="家庭國內旅遊、跨縣市探親" class="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+              <div class="absolute bottom-0 left-0 p-6">
+                <h3 class="text-white text-2xl font-bold drop-shadow-lg">家庭國內旅遊、跨縣市探親</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- How It Works Section -->
+      <section id="how-it-works" class="py-16 sm:py-20 bg-green-50 scroll-mt-20">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl sm:text-4xl font-bold text-slate-800">使用流程</h2>
+            <p class="mt-4 text-lg text-slate-600">從購買到使用，一切都為您設想周到</p>
+          </div>
+          <div class="relative">
+            <div class="hidden lg:block absolute left-1/2 top-16 bottom-16 w-1 bg-slate-200 -translate-x-1/2"></div>
+            <div class="space-y-12">
+              <!-- Step 1 -->
+              <div class="flex flex-col lg:flex-row items-center lg:gap-8">
+                <div class="flex-1 lg:order-1">
+                  <div class="bg-white p-6 rounded-2xl shadow-lg border border-slate-200 lg:w-4/5 lg:ml-auto">
+                    <h3 class="text-2xl font-bold text-[#00416b] mb-2">訂購專屬QRcode</h3>
+                    <p class="text-slate-600">家長在我們網站上選擇方案並完成訂購。</p>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 lg:order-2 my-4 lg:my-0">
+                  <div class="w-32 h-32 bg-[#89d1ff] text-[#00416b] rounded-full flex items-center justify-center font-bold shadow-md z-10 relative">
+                    <svg class="w-20 h-20" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 18H30V30H18V18Z" fill="#333B4B"/><path d="M21 21H27V27H21V21Z" fill="#CFA86E"/><path d="M34 18H46V30H34V18Z" fill="#333B4B"/><path d="M37 21H43V27H37V21Z" fill="#CFA86E"/><path d="M18 34H30V46H18V34Z" fill="#333B4B"/><path d="M21 37H27V43H21V37Z" fill="#CFA86E"/><path d="M34 42H38V46H34V42Z" fill="#333B4B"/><path d="M40 42H44V46H40V42Z" fill="#333B4B"/><path d="M40 36H44V40H40V36Z" fill="#D86053"/><path d="M34 34H38V38H34V34Z" fill="#333B4B"/></svg>
+                  </div>
+                </div>
+                <div class="flex-1 lg:order-3"></div>
+              </div>
+              <div class="flex justify-center lg:hidden">
+                <svg class="w-10 h-10 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+              </div>
+              <!-- Step 2 -->
+              <div class="flex flex-col lg:flex-row items-center lg:gap-8">
+                <div class="flex-1 lg:order-3">
+                  <div class="bg-white p-6 rounded-2xl shadow-lg border border-slate-200 lg:w-4/5 lg:mr-auto">
+                    <h3 class="text-2xl font-bold text-[#00416b] mb-2">貼在隨身物品上</h3>
+                    <p class="text-slate-600">將 QRcode 貼紙貼在背包、衣服或隨身物品上。</p>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 lg:order-2 my-4 lg:my-0">
+                  <div class="w-32 h-32 bg-[#89d1ff] text-[#00416b] rounded-full flex items-center justify-center font-bold shadow-md z-10 relative">
+                    <svg class="w-20 h-20" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 20C12 11.1634 19.1634 4 28 4H36C44.8366 4 52 11.1634 52 20V50C52 55.5228 47.5228 60 42 60H22C16.4772 60 12 55.5228 12 50V20Z" fill="#D86053"/><path d="M12 20C12 11.1634 19.1634 4 28 4H36C44.8366 4 52 11.1634 52 20V24H12V20Z" fill="#333B4B"/><rect x="18" y="30" width="28" height="4" rx="2" fill="#333B4B"/><circle cx="48" cy="42" r="8" fill="#CFA86E"/><path d="M46 40h2v2h-2v-2zm4 0h2v2h-2v-2zm-4 4h2v2h-2v-2zm4 4h2v2h-2v-2z" fill="#333B4B" /></svg>
+                  </div>
+                </div>
+                <div class="flex-1 lg:order-1"></div>
+              </div>
+              <div class="flex justify-center lg:hidden">
+                <svg class="w-10 h-10 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+              </div>
+              <!-- Step 3 -->
+              <div class="flex flex-col lg:flex-row items-center lg:gap-8">
+                <div class="flex-1 lg:order-1">
+                  <div class="bg-white p-6 rounded-2xl shadow-lg border border-slate-200 lg:w-4/5 lg:ml-auto">
+                    <h3 class="text-2xl font-bold text-[#00416b] mb-2">路人掃描 QRcode</h3>
+                    <p class="text-slate-600">當孩子走失或物品遺失時，熱心路人掃描 QRcode。</p>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 lg:order-2 my-4 lg:my-0">
+                  <div class="w-32 h-32 bg-[#89d1ff] text-[#00416b] rounded-full flex items-center justify-center font-bold shadow-md z-10 relative">
+                    <svg class="w-20 h-20" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 18C10 13.5817 13.5817 10 18 10H46C50.4183 10 54 13.5817 54 18V50C54 54.4183 50.4183 58 46 58H18C13.5817 58 10 54.4183 10 50V18Z" fill="#333B4B"/><circle cx="32" cy="34" r="14" fill="#CFA86E"/><circle cx="32" cy="34" r="8" fill="#333B4B"/><circle cx="46" cy="18" r="4" fill="#D86053"/></svg>
+                  </div>
+                </div>
+                <div class="flex-1 lg:order-3"></div>
+              </div>
+              <div class="flex justify-center lg:hidden">
+                <svg class="w-10 h-10 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+              </div>
+              <!-- Step 4 -->
+              <div class="flex flex-col lg:flex-row items-center lg:gap-8">
+                <div class="flex-1 lg:order-3">
+                  <div class="bg-white p-6 rounded-2xl shadow-lg border border-slate-200 lg:w-4/5 lg:mr-auto">
+                    <h3 class="text-2xl font-bold text-[#00416b] mb-2">聯繫父母/QRcode擁有者</h3>
+                    <p class="text-slate-600">得知孩子走失地點、遺失物位置。</p>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 lg:order-2 my-4 lg:my-0">
+                  <div class="w-32 h-32 bg-[#89d1ff] text-[#00416b] rounded-full flex items-center justify-center font-bold shadow-md z-10 relative">
+                    <svg class="w-20 h-20" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="14" y="6" width="36" height="52" rx="6" fill="#333B4B"/><rect x="18" y="10" width="28" height="44" rx="2" fill="#CFA86E"/><path d="M26 22H38" stroke="#333B4B" stroke-width="4" stroke-linecap="round"/><path d="M26 30H38" stroke="#333B4B" stroke-width="4" stroke-linecap="round"/><path d="M26 38H34" stroke="#333B4B" stroke-width="4" stroke-linecap="round"/><circle cx="42" cy="18" r="6" fill="#D86053"/><path d="M41 16L43 20M43 16L41 20" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+                  </div>
+                </div>
+                <div class="flex-1 lg:order-1"></div>
+              </div>
+              <div class="flex justify-center lg:hidden">
+                <svg class="w-10 h-10 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+              </div>
+              <!-- Step 5 -->
+              <div class="flex flex-col lg:flex-row items-center lg:gap-8">
+                <div class="flex-1 lg:order-1">
+                  <div class="bg-white p-6 rounded-2xl shadow-lg border border-slate-200 lg:w-4/5 lg:ml-auto">
+                    <h3 class="text-2xl font-bold text-[#00416b] mb-2">孩子安全回家</h3>
+                    <p class="text-slate-600">家長收到通知後，可以快速應對，讓孩子安全回家。</p>
+                  </div>
+                </div>
+                <div class="flex-shrink-0 lg:order-2 my-4 lg:my-0">
+                  <div class="w-32 h-32 bg-[#89d1ff] text-[#00416b] rounded-full flex items-center justify-center font-bold shadow-md z-10 relative">
+                    <svg class="w-20 h-20" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 30L32 6L62 30V58H44V42H20V58H2V30Z" fill="#333B4B"/><path d="M62 30L32 6L2 30" stroke="#D86053" stroke-width="4" stroke-linejoin="round"/><path d="M32 26C28 22 24 24 24 29C24 34 32 40 32 40C32 40 40 34 40 29C40 24 36 22 32 26Z" fill="#D86053"/></svg>
+                  </div>
+                </div>
+                <div class="flex-1 lg:order-3"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing Section -->
+      <section id="pricing" class="py-16 sm:py-20 bg-white scroll-mt-20">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl sm:text-4xl font-bold text-slate-800">價位表</h2>
+            <p class="mt-4 text-lg text-slate-600">選擇最適合您的方案，為全家人提供保障</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch max-w-7xl mx-auto">
+            <div class="border rounded-2xl p-6 flex flex-col text-center items-center transition-all duration-300 bg-white text-slate-800 border-slate-200 shadow-lg hover:shadow-xl">
+              <img src="https://cdn.jsdelivr.net/gh/AltheaCoding/image-hosting@main/qrar-price-5.png" alt="A. 5 張貼紙" class="w-full h-auto object-contain mb-4 rounded-lg max-h-52">
+              <h3 class="text-2xl font-bold text-gray-800">A. 5 張貼紙</h3>
+              <p class="text-3xl font-bold text-green-600 my-2">$99 <span class="text-base font-normal text-gray-500">NTD</span></p>
+              <a href="#" class="w-full mt-4 text-center font-bold py-3 rounded-lg transition-colors bg-green-200 text-green-800 hover:bg-green-300">選擇方案</a>
+            </div>
+            <div class="border rounded-2xl p-6 flex flex-col text-center items-center transition-all duration-300 bg-green-100 border-green-400 shadow-2xl scale-105">
+              <span class="bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1 rounded-full self-center mb-4">最受歡迎</span>
+              <img src="https://cdn.jsdelivr.net/gh/AltheaCoding/image-hosting@main/qrar-price-15.png" alt="B. 15 張貼紙 (含運)" class="w-full h-auto object-contain mb-4 rounded-lg max-h-52">
+              <h3 class="text-2xl font-bold text-gray-800">B. 15 張貼紙 (含運)</h3>
+              <p class="text-3xl font-bold text-green-600 my-2">$249 <span class="text-base font-normal text-gray-500">NTD</span></p>
+              <a href="#" class="w-full mt-4 text-center font-bold py-3 rounded-lg transition-colors bg-green-500 text-white hover:bg-green-600">選擇方案</a>
+            </div>
+            <div class="border rounded-2xl p-6 flex flex-col text-center items-center transition-all duration-300 bg-white text-slate-800 border-slate-200 shadow-lg hover:shadow-xl">
+              <img src="https://cdn.jsdelivr.net/gh/AltheaCoding/image-hosting@main/qrar-price-35.png" alt="C. 35 張貼紙 (含運)" class="w-full h-auto object-contain mb-4 rounded-lg max-h-52">
+              <h3 class="text-2xl font-bold text-gray-800">C. 35 張貼紙 (含運)</h3>
+              <p class="text-3xl font-bold text-green-600 my-2">$499 <span class="text-base font-normal text-gray-500">NTD</span></p>
+              <a href="#" class="w-full mt-4 text-center font-bold py-3 rounded-lg transition-colors bg-green-200 text-green-800 hover:bg-green-300">選擇方案</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Use Cases Section -->
+      <section id="usecases" class="py-20 bg-white scroll-mt-20">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2 class="text-4xl font-black text-gray-800">其他使用例子</h2>
+            <p class="mt-4 text-lg text-gray-600">不只孩子，守護您所有珍視。</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="use-case-card group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer">
+              <img src="https://cdn.jsdelivr.net/gh/AltheaCoding/image-hosting@main/For%20Children_UseCases.png" alt="走失孩童協尋" class="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-500">
+              <div class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-opacity duration-300 flex items-end p-6">
+                <h3 class="text-white text-3xl font-bold">走失孩童協尋</h3>
+              </div>
+              <div class="use-case-overlay absolute inset-0 bg-black/70 backdrop-blur-sm p-6 text-white flex flex-col justify-center items-center text-center transition-all duration-500 ease-in-out opacity-0 -translate-y-full pointer-events-none">
+                <button class="use-case-close absolute top-4 right-4 text-white hover:text-amber-300 z-10" aria-label="Close">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+                <h3 class="text-2xl font-bold mb-4">走失孩童協尋</h3>
+                <p class="text-base">貼在書包、外套或水壺上。在公園、百貨公司或校外教學等人潮擁擠的地方，若孩子不慎走失，熱心民眾能立即掃碼聯繫，無需等待廣播或報警，爭取黃金時間。</p>
+              </div>
+            </div>
+            <div class="use-case-card group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer">
+              <img src="https://cdn.jsdelivr.net/gh/AltheaCoding/image-hosting@main/For%20Pet_UseCase.png" alt="寵物走失" class="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-500">
+              <div class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-opacity duration-300 flex items-end p-6">
+                <h3 class="text-white text-3xl font-bold">寵物走失</h3>
+              </div>
+              <div class="use-case-overlay absolute inset-0 bg-black/70 backdrop-blur-sm p-6 text-white flex flex-col justify-center items-center text-center transition-all duration-500 ease-in-out opacity-0 -translate-y-full pointer-events-none">
+                <button class="use-case-close absolute top-4 right-4 text-white hover:text-amber-300 z-10" aria-label="Close">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+                <h3 class="text-2xl font-bold mb-4">寵物走失</h3>
+                <p class="text-base">掛在項圈上。好奇心旺盛的毛孩，有時會趁開門時溜走。有了 QRAR，鄰居或路人發現時，可以輕鬆掃碼通知您，大幅提高找回愛寵的機會。</p>
+              </div>
+            </div>
+            <div class="use-case-card group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer">
+              <img src="https://cdn.jsdelivr.net/gh/AltheaCoding/image-hosting@main/For%20Belongings_UseCase.png" alt="重要物品" class="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-500">
+              <div class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-opacity duration-300 flex items-end p-6">
+                <h3 class="text-white text-3xl font-bold">重要物品</h3>
+              </div>
+              <div class="use-case-overlay absolute inset-0 bg-black/70 backdrop-blur-sm p-6 text-white flex flex-col justify-center items-center text-center transition-all duration-500 ease-in-out opacity-0 -translate-y-full pointer-events-none">
+                <button class="use-case-close absolute top-4 right-4 text-white hover:text-amber-300 z-10" aria-label="Close">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+                <h3 class="text-2xl font-bold mb-4">重要物品</h3>
+                <p class="text-base">貼在筆電、相機、鑰匙圈或行李箱上。不論是遺忘在咖啡廳的電腦，還是機場錯拿的行李，拾獲者都能透過 QR 碼聯繫您，讓失物安全回到您手中。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section id="faq" class="py-16 sm:py-20 bg-amber-50 scroll-mt-20">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl sm:text-4xl font-bold text-slate-800">問與答</h2>
+            <p class="mt-4 text-lg text-slate-600">為您解答所有疑問</p>
+          </div>
+          <div>
+            <div class="faq-item border-b border-slate-200 py-4">
+              <button class="w-full flex justify-between items-start text-left focus:outline-none" aria-expanded="true">
+                <div class="flex-1 pr-4">
+                  <div class="flex items-start">
+                    <span class="text-lg font-bold text-gray-800 mr-3">Q.</span>
+                    <span class="text-lg font-semibold text-slate-800">我選擇A方案，可以登記兩個不同的QR嗎？</span>
+                  </div>
+                </div>
+                <span class="transform transition-transform duration-300 mt-1 flex-shrink-0 rotate-180">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                </span>
               </button>
-
-              <header className="text-center">
-                <h2 className="text-2xl font-bold text-slate-900">其他聯絡方式</h2>
-                <p className="text-slate-600 mt-2">請透過以下方式留下您的訊息。</p>
-              </header>
-
-              <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-                <div>
-                  <label htmlFor="contact-method" className="block text-sm font-medium text-slate-700 mb-1">聯絡方式 (可選)</label>
-                  <input 
-                    type="text" 
-                    id="contact-method"
-                    placeholder="例如：Email 或 其他通訊軟體"
-                    className="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-[#1C2D4A] focus:border-[#1C2D4A] transition"
-                  />
+              <div class="faq-answer grid grid-rows-[1fr] transition-all duration-500 ease-in-out mt-2">
+                <div class="overflow-hidden">
+                  <div class="flex items-start pl-8 text-slate-600">
+                    <span class="font-bold mr-3">A.</span>
+                    <p class="whitespace-pre-line flex-1">我們只有B、C方案可以登記1個以上3個以下QR code。</p>
+                  </div>
                 </div>
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-1">您的訊息</label>
-                  <textarea 
-                    id="message" 
-                    rows={4}
-                    placeholder="請在此輸入您想傳達給失主的訊息..."
-                    className="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-[#1C2D4A] focus:border-[#1C2D4A] transition"
-                    required
-                  ></textarea>
+              </div>
+            </div>
+            <div class="faq-item border-b border-slate-200 py-4">
+              <button class="w-full flex justify-between items-start text-left focus:outline-none" aria-expanded="false">
+                <div class="flex-1 pr-4">
+                  <div class="flex items-start">
+                    <span class="text-lg font-bold text-gray-800 mr-3">Q.</span>
+                    <span class="text-lg font-semibold text-slate-800">為什麼不選擇GPS手錶或AirTag？</span>
+                  </div>
                 </div>
-                <PrimaryButton onClick={() => { alert('Message sent!'); onClose(); }}>
-                  傳送匿名訊息
-                </PrimaryButton>
-              </form>
-
-              <p className="text-xs text-center text-slate-500">
-                您的聯絡方式將被加密處理，僅用於本次協尋聯繫。
-              </p>
-
-              <style>{`
-                @keyframes fade-in-scale {
-                  from {
-                    transform: scale(0.95);
-                    opacity: 0;
-                  }
-                  to {
-                    transform: scale(1);
-                    opacity: 1;
-                  }
-                }
-              `}</style>
+                <span class="transform transition-transform duration-300 mt-1 flex-shrink-0 rotate-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                </span>
+              </button>
+              <div class="faq-answer grid grid-rows-[0fr] transition-all duration-500 ease-in-out">
+                <div class="overflow-hidden">
+                  <div class="flex items-start pl-8 text-slate-600">
+                    <span class="font-bold mr-3">A.</span>
+                    <p class="whitespace-pre-line flex-1">AirTagr價格高昂又容易用丟，GPS 需要充電，而且通常只能放在一件物品上（像書包）。我們的 QR code 標籤便宜、不需充電，可以貼在多處。
+也不會持續追蹤孩子位置，暴露孩子、住家位置，以及家庭偏好的日常路線。但卻能讓好心人安全地聯繫到您——而不會暴露隱私。</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        );
-      };
+        </div>
+      </section>
+    </main>
 
-      // --- From components/FAQ.tsx ---
-      const faqData = [
-        {
-          question: 'Q1：如果我趕時間，或失主沒有馬上回覆我怎麼辦？',
-          answer: 'A：我們完全理解。最好的做法是，您可以先將失物或孩童帶至附近最方便的警察局、捷運站或連鎖超商的服務台暫時安置，然後再透過本系統留言告知失主您放置的確切地點。您的幫助依然非常重要！'
-        },
-        {
-          question: 'Q2：為什麼建議使用 LINE 聯繫？',
-          answer: 'A：在台灣，Line是最多人使用的通訊軟體。使用 LINE 是最即時、最方便的方式。您可以快速傳送當下的 GPS 地點，這對焦急的失主來說是極有價值的資訊。同樣地，整個過程是完全匿名的，您的 LINE 隱私會受到完整的保護。'
-        },
-        {
-          question: 'Q3：如果失主提出不合理的要求（例如要我把東西送到很遠的地方）怎麼辦？',
-          answer: 'A：請以您自身的安全與方便為最高原則。您沒有義務滿足任何不合理的要求。將物品交由公正的第三方（如警察局）是我們最推薦的安全作法。'
-        },
-        {
-          question: 'Q4：這是什麼？我為什麼應該信任這個網站？',
-          answer: 'A：這是 QRAR 安心找回中心的官方協尋頁面。我們是一個專注於協尋失物與走散親友的安全平台。所有訊息都會以匿名、加密的方式轉達給失主，我們也絕不會向您索取個資或金融資訊，請您安心'
-        },
-      ];
-
-      const FAQItem = ({ item, isOpen, onClick }) => {
-        return (
-          <div className="border-b border-slate-200 last:border-b-0">
-            <button 
-              onClick={onClick} 
-              className="w-full flex justify-between items-center text-left font-semibold text-slate-800 hover:text-[#1C2D4A] py-4 focus:outline-none transition-colors"
-              aria-expanded={isOpen}
-            >
-              <span className="pr-4">{item.question}</span>
-              <ChevronDownIcon className={`w-5 h-5 text-slate-500 flex-shrink-0 transform transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
-            </button>
-            <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-screen pb-4' : 'max-h-0'}`}>
-              <p className="text-slate-600 text-sm leading-relaxed">
-                {item.answer}
-              </p>
-            </div>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white">
+      <div class="container mx-auto px-6 py-12">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-6 md:mb-0">
+            <h3 class="text-4xl font-black">QRAR</h3>
+            <p class="text-gray-400 mt-2">一個小小QR碼，守護孩子大大安全。</p>
           </div>
-        );
-      };
+          <div class="flex flex-col text-center md:text-right">
+            <h4 class="font-bold text-lg mb-2">聯繫我們</h4>
+            <a href="#" class="text-green-400 hover:text-green-300">加入 LINE 官方帳號</a>
+            <p class="text-gray-400 mt-1">service@qrar.com</p>
+          </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-500 text-sm">
+          <p>&copy; 2024 QRAR. All rights reserved.</p>
+          <div class="mt-2">
+            <a href="#" class="hover:text-white mx-2">服務條款</a>
+            <span>|</span>
+            <a href="#" class="hover:text-white mx-2">隱私權政策</a>
+          </div>
+        </div>
+      </div>
+    </footer>
 
-      const FAQ = () => {
-        const [activeIndex, setActiveIndex] = useState(null);
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // --- Mobile Menu ---
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+        const menuIconClose = document.getElementById('menu-icon-close');
 
-        const handleToggle = (index) => {
-          setActiveIndex(activeIndex === index ? null : index);
+        const toggleMenu = (forceClose = false) => {
+          const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+          if (forceClose || isExpanded) {
+            menuButton.setAttribute('aria-expanded', 'false');
+            mobileMenu.classList.add('opacity-0', '-translate-y-4', 'pointer-events-none');
+            mobileMenu.classList.remove('opacity-100', 'translate-y-0');
+            menuIconOpen.classList.remove('hidden');
+            menuIconClose.classList.add('hidden');
+          } else {
+            menuButton.setAttribute('aria-expanded', 'true');
+            mobileMenu.classList.remove('opacity-0', '-translate-y-4', 'pointer-events-none');
+            mobileMenu.classList.add('opacity-100', 'translate-y-0');
+            menuIconOpen.classList.add('hidden');
+            menuIconClose.classList.remove('hidden');
+          }
         };
 
-        return (
-          <section className="pt-4 border-t border-slate-200">
-            <h2 className="text-xl font-bold text-slate-900 mb-2 text-center">Q&A</h2>
-            <div>
-              {faqData.map((item, index) => (
-                <FAQItem 
-                  key={index}
-                  item={item}
-                  isOpen={activeIndex === index}
-                  onClick={() => handleToggle(index)}
-                />
-              ))}
-            </div>
-          </section>
-        );
-      };
+        menuButton.addEventListener('click', () => toggleMenu());
+        mobileMenu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => toggleMenu(true));
+        });
 
-      // --- From App.tsx ---
-      const App = () => {
-        const [isModalOpen, setIsModalOpen] = useState(false);
+        // --- FAQ Accordion ---
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+          const button = item.querySelector('button');
+          button.addEventListener('click', () => {
+            const isExpanded = button.getAttribute('aria-expanded') === 'true';
 
-        return (
-          <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 font-sans">
-            <main className="bg-white rounded-2xl shadow-lg w-full max-w-md mx-auto overflow-hidden">
-              <div className="text-lg text-center text-white font-semibold bg-[#1C2D4A] py-3">
-                感謝您，熱心的幫忙！
-              </div>
-
-              <div className="p-6 md:p-8 pb-3">
-                <header className="text-center">
-                  <div className="flex items-center justify-center gap-8">
-                    <img 
-                      src="https://github.com/AltheaCoding/image-hosting/blob/main/QRARicon.png?raw=true"
-                      alt="QRAR Logo"
-                      className="w-32 h-32 flex-shrink-0"
-                    />
-                    <div className="text-left">
-                      <h1 className="text-5xl font-bold text-slate-900">qrar.com</h1>
-                      <p className="text-3xl text-slate-600">安心找回中心</p>
-                    </div>
-                  </div>
-                </header>
-              </div>
-              
-              <div className="px-6 md:px-8 pb-6 text-center text-slate-700">
-                  <p>此 QR code 可協助尋找失物或走散親友。</p>
-              </div>
-
-              <img 
-                src="https://github.com/AltheaCoding/image-hosting/blob/main/Google_AI_Studio_2025-09-25T16_23_55.429Z.png?raw=true" 
-                alt="Illustration of a person finding a lost item with a QRAR tag." 
-                className="w-full h-auto" 
-              />
-              
-              <div className="p-6 md:p-8 pt-6 space-y-6">
-                <div className="space-y-4">
-                  <div>
-                    <PrimaryButton onClick={() => alert('Redirecting to LINE...')}>
-                      訊息將以 Line 匿名加密 傳送。
-                    </PrimaryButton>
-                    <p className="text-center text-xs text-slate-500 mt-2 px-4">
-                      😊 為感謝您的協助，完成幫助後，<br/>
-                      30天內申請QRcode將贈送您 100 則訊息額度
-                    </p>
-                  </div>
-                  <SecondaryButton onClick={() => setIsModalOpen(true)}>
-                    沒有Line，要留言
-                  </SecondaryButton>
-                </div>
-
-                <footer className="border-t border-slate-200 pt-4 space-y-3 text-xs text-slate-600">
-                  <div className="flex items-start gap-2 bg-[#1C2D4A]/10 border border-[#1C2D4A]/50 text-[#1C2D4A] p-3 rounded-lg">
-                    <ShieldCheckIcon className="w-6 h-6 flex-shrink-0 mt-0.5 text-[#1C2D4A]" />
-                    <div>
-                      <p className="font-bold">安全提醒：請認明 <strong className="text-slate-800">https://qrar.com</strong> 官方網址。</p>
-                      <p>本系統<strong className="text-slate-800">絕不會</strong>向您索取個資、密碼或金融帳戶。有任何疑慮請直撥 165 反詐騙專線。</p>
-                    </div>
-                  </div>
-                </footer>
-                <FAQ />
-              </div>
-            </main>
+            // Close all items
+            faqItems.forEach(otherItem => {
+              otherItem.querySelector('button').setAttribute('aria-expanded', 'false');
+              otherItem.querySelector('.faq-answer').classList.remove('grid-rows-[1fr]', 'mt-2');
+              otherItem.querySelector('.faq-answer').classList.add('grid-rows-[0fr]');
+              otherItem.querySelector('svg').parentElement.classList.remove('rotate-180');
+            });
             
-            <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-          </div>
-        );
-      };
-      
-      // --- From index.tsx ---
-      const rootElement = document.getElementById('root');
-      const root = ReactDOM.createRoot(rootElement);
-      root.render(<App />);
+            // Open the clicked one if it was closed
+            if (!isExpanded) {
+              button.setAttribute('aria-expanded', 'true');
+              const answer = item.querySelector('.faq-answer');
+              answer.classList.add('grid-rows-[1fr]', 'mt-2');
+              answer.classList.remove('grid-rows-[0fr]');
+              button.querySelector('svg').parentElement.classList.add('rotate-180');
+            }
+          });
+        });
+        
+        // --- Use Cases Overlay ---
+        const useCaseCards = document.querySelectorAll('.use-case-card');
+        useCaseCards.forEach(card => {
+            const overlay = card.querySelector('.use-case-overlay');
+            const closeButton = card.querySelector('.use-case-close');
 
+            card.addEventListener('click', (e) => {
+                // Prevent opening if the click is on the close button itself
+                if (e.target !== closeButton && !closeButton.contains(e.target)) {
+                   overlay.classList.add('opacity-100', 'translate-y-0');
+                   overlay.classList.remove('opacity-0', '-translate-y-full', 'pointer-events-none');
+                }
+            });
+
+            closeButton.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent the card's click listener from firing again
+                overlay.classList.remove('opacity-100', 'translate-y-0');
+                overlay.classList.add('opacity-0', '-translate-y-full', 'pointer-events-none');
+            });
+        });
+
+      });
     </script>
   </body>
 </html>
