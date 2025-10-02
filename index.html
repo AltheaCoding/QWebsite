@@ -18,11 +18,13 @@
     <!-- Header -->
     <header class="bg-amber-50 sticky top-0 z-50 shadow-md">
       <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-        <div class="text-3xl font-black text-gray-800">QRAR</div>
+        <a href="#" class="text-3xl font-black text-gray-800">QRAR</a>
         
         <!-- Desktop Navigation -->
-        <nav class="hidden md:flex items-center space-x-8">
-          <a href="#features" class="text-gray-600 hover:text-green-600 transition-colors">為什麼選擇我們</a>
+        <nav class="hidden md:flex items-center space-x-4 lg:space-x-6">
+          <a href="#" class="text-gray-600 hover:text-green-600 transition-colors">qrar.com守護您</a>
+          <a href="#problems" class="text-gray-600 hover:text-green-600 transition-colors">父母痛點</a>
+          <a href="#features" class="text-gray-600 hover:text-green-600 transition-colors">解決方案</a>
           <a href="#scenarios" class="text-gray-600 hover:text-green-600 transition-colors">適用場景</a>
           <a href="#how-it-works" class="text-gray-600 hover:text-green-600 transition-colors">使用流程</a>
           <a href="#pricing" class="text-gray-600 hover:text-green-600 transition-colors">價格方案</a>
@@ -50,7 +52,9 @@
       <!-- Mobile Menu Dropdown -->
       <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-amber-50/95 backdrop-blur-sm shadow-lg transform transition-all duration-300 ease-in-out opacity-0 -translate-y-4 pointer-events-none">
         <nav class="flex flex-col items-center p-4 space-y-2">
-          <a href="#features" class="text-gray-800 text-lg font-semibold py-3 px-6 hover:bg-green-100 rounded-md w-full text-center transition-colors">為什麼選擇我們</a>
+          <a href="#" class="text-gray-800 text-lg font-semibold py-3 px-6 hover:bg-green-100 rounded-md w-full text-center transition-colors">qrar.com守護您</a>
+          <a href="#problems" class="text-gray-800 text-lg font-semibold py-3 px-6 hover:bg-green-100 rounded-md w-full text-center transition-colors">父母痛點</a>
+          <a href="#features" class="text-gray-800 text-lg font-semibold py-3 px-6 hover:bg-green-100 rounded-md w-full text-center transition-colors">解決方案</a>
           <a href="#scenarios" class="text-gray-800 text-lg font-semibold py-3 px-6 hover:bg-green-100 rounded-md w-full text-center transition-colors">適用場景</a>
           <a href="#how-it-works" class="text-gray-800 text-lg font-semibold py-3 px-6 hover:bg-green-100 rounded-md w-full text-center transition-colors">使用流程</a>
           <a href="#pricing" class="text-gray-800 text-lg font-semibold py-3 px-6 hover:bg-green-100 rounded-md w-full text-center transition-colors">價格方案</a>
@@ -99,62 +103,116 @@
           </div>
       </section>
 
-      <!-- Intro Section -->
-      <section id="intro" class="py-20 bg-white">
-        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-          <div class="order-2 md:order-1">
-            <img 
-              src="https://github.com/AltheaCoding/image-hosting/blob/main/intro.png?raw=true" 
-              alt="QRAR sticker on a child's backpack" 
-              class="rounded-2xl shadow-xl w-full h-auto object-cover"
-            />
+      <!-- Problems Section -->
+      <section id="problems" class="py-20 bg-white scroll-mt-20">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl sm:text-4xl font-black text-gray-800">您是否也擔心這些事？</h2>
+            <p class="mt-4 text-lg text-gray-600">如何確保有效又安全的聯繫方式?</p>
           </div>
-          <div class="order-1 md:order-2">
-            <h2 class="text-3xl font-bold text-gray-800">孩子走失只需要一瞬間。</h2>
-            <p class="mt-4 text-lg text-gray-600">
-              【QRAR.com】防走失吊牌，透過 QRcode + PIN 雙重安全設計，幫助好心人快速掃碼聯繫家長，既簡單快速也不用安裝APP，一掃就能快速聯繫，協助孩子平安回家。
-            </p>
+          <div class="grid grid-cols-5 gap-2 lg:gap-8 items-start">
+            <!-- Problem 1 -->
+            <div class="flex flex-col items-center text-center">
+              <div class="relative w-16 h-16 sm:w-24 sm:h-24 lg:w-40 lg:h-40 mb-2">
+                <div class="absolute inset-0 bg-cyan-100/60 rounded-full blur-xl"></div>
+                <img src="https://github.com/AltheaCoding/image-hosting/blob/main/Problem_1%20(2).PNG?raw=true" alt="擔心資料外洩" class="relative w-full h-full object-contain">
+              </div>
+              <p class="text-xs sm:text-sm lg:text-base text-gray-700 font-medium leading-relaxed">父母希望孩子隨身有聯絡方式，但擔心資料外洩。</p>
+            </div>
+            <!-- Problem 2 -->
+            <div class="flex flex-col items-center text-center">
+              <div class="relative w-16 h-16 sm:w-24 sm:h-24 lg:w-40 lg:h-40 mb-2">
+                <div class="absolute inset-0 bg-cyan-100/60 rounded-full blur-xl"></div>
+                <img src="https://github.com/AltheaCoding/image-hosting/blob/main/Problem_1%20(5).PNG?raw=true" alt="陌生電話不接" class="relative w-full h-full object-contain">
+              </div>
+              <p class="text-xs sm:text-sm lg:text-base text-gray-700 font-medium leading-relaxed">現代人多不接、不回撥陌生電話，緊急情況容易錯失聯繫。</p>
+            </div>
+            <!-- Problem 3 -->
+            <div class="flex flex-col items-center text-center">
+              <div class="relative w-16 h-16 sm:w-24 sm:h-24 lg:w-40 lg:h-40 mb-2">
+                <div class="absolute inset-0 bg-cyan-100/60 rounded-full blur-xl"></div>
+                <img src="https://github.com/AltheaCoding/image-hosting/blob/main/Problem_1%20(4).PNG?raw=true" alt="孩子緊張說不出話" class="relative w-full h-full object-contain">
+              </div>
+              <p class="text-xs sm:text-sm lg:text-base text-gray-700 font-medium leading-relaxed">緊急時，孩子可能因緊張或受傷說不出正確聯絡資訊。</p>
+            </div>
+            <!-- Problem 4 -->
+            <div class="flex flex-col items-center text-center">
+              <div class="relative w-16 h-16 sm:w-24 sm:h-24 lg:w-40 lg:h-40 mb-2">
+                <div class="absolute inset-0 bg-cyan-100/60 rounded-full blur-xl"></div>
+                <img src="https://github.com/AltheaCoding/image-hosting/blob/main/Problem_1%20(3).PNG?raw=true" alt="物品遺失" class="relative w-full h-full object-contain">
+              </div>
+              <p class="text-xs sm:text-sm lg:text-base text-gray-700 font-medium leading-relaxed">物品遺失也能安全歸還，無需公開姓名或地址。</p>
+            </div>
+            <!-- Problem 5 -->
+            <div class="flex flex-col items-center text-center">
+              <div class="relative w-16 h-16 sm:w-24 sm:h-24 lg:w-40 lg:h-40 mb-2">
+                <div class="absolute inset-0 bg-cyan-100/60 rounded-full blur-xl"></div>
+                <img src="https://github.com/AltheaCoding/image-hosting/blob/main/Problem_1%20(1).png?raw=true" alt="聯絡方式過時" class="relative w-full h-full object-contain">
+              </div>
+              <p class="text-xs sm:text-sm lg:text-base text-gray-700 font-medium leading-relaxed">電話少人打、Line又封鎖陌生訊息，孩子該記什麼聯絡方式？</p>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- Features Section -->
-      <section id="features" class="py-20 bg-green-50 scroll-mt-20">
-        <div class="container mx-auto px-6">
-          <div class="text-center mb-12">
-            <h2 class="text-4xl font-black text-gray-800">為什麼選擇我們</h2>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-7xl mx-auto">
-            <div class="relative group rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden aspect-[21/9]">
-              <img src="https://github.com/AltheaCoding/image-hosting/blob/main/Affordable%20%20Can%20Stick%20Anywhere.png?raw=true" alt="價格實惠" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-              <div class="relative h-full flex flex-col justify-end items-start text-left p-6">
-                <h3 class="text-3xl font-bold text-white drop-shadow-md mb-1">價格實惠</h3>
-                <p class="text-lg font-medium text-gray-200 drop-shadow-md">可貼各個地方</p>
+      <section id="features" class="scroll-mt-20 bg-white">
+        <div class="container mx-auto px-6 pt-20 pb-12 text-center">
+          <h2 class="text-4xl font-black text-gray-800">為什麼選擇我們</h2>
+        </div>
+        
+        <div class="bg-[#D6FFE4]">
+            <div class="container mx-auto px-6 py-4 flex flex-col sm:flex-row justify-center items-center gap-4 text-center sm:text-left">
+                <img src="https://github.com/AltheaCoding/image-hosting/blob/main/Solution_%20(5).PNG?raw=true" alt="Secure QR Code Icon" class="h-10 w-10 sm:h-12 sm:w-12 flex-shrink-0">
+                <p class="text-base sm:text-lg text-gray-800 font-medium">
+                    QRcode，貼在孩子物品或衣物上，隱私安全又安心
+                </p>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 pt-16 pb-20">
+          <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16">
+            <!-- Feature 1: Privacy -->
+            <div>
+              <img src="https://github.com/AltheaCoding/image-hosting/blob/main/Solution_%20(2).png?raw=true" alt="隱私安心" class="rounded-3xl shadow-xl w-full h-auto object-cover aspect-square mb-6">
+              <div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-4">
+                  <span class="bg-yellow-200 px-4 py-1 inline-block transform -skew-x-12">隱私安心：</span>
+                </h3>
+                <p class="text-lg text-gray-600 leading-relaxed">只需掃碼傳訊，個資完全不外洩</p>
               </div>
             </div>
-            <div class="relative group rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden aspect-[21/9]">
-              <img src="https://github.com/AltheaCoding/image-hosting/blob/main/Waterproof%20&%20Durable.png?raw=true" alt="防水耐用" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-              <div class="relative h-full flex flex-col justify-end items-start text-left p-6">
-                <h3 class="text-3xl font-bold text-white drop-shadow-md mb-1">防水耐用</h3>
-                <p class="text-lg font-medium text-gray-200 drop-shadow-md">衣服、書包、鞋子都可使用</p>
+
+            <!-- Feature 2: Convenience -->
+            <div>
+              <img src="https://github.com/AltheaCoding/image-hosting/blob/main/Solution_%20(3).png?raw=true" alt="經濟又便利" class="rounded-3xl shadow-xl w-full h-auto object-cover aspect-square mb-6">
+              <div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-4">
+                   <span class="bg-yellow-200 px-4 py-1 inline-block transform -skew-x-12">經濟又便利：</span>
+                </h3>
+                <p class="text-lg text-gray-600 leading-relaxed">親民價格，多處貼放，緊急時隨手可用。</p>
               </div>
             </div>
-            <div class="relative group rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden aspect-[21/9]">
-              <img src="https://github.com/AltheaCoding/image-hosting/blob/main/Easy%20to%20Use.png?raw=true" alt="簡單使用" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-              <div class="relative h-full flex flex-col justify-end items-start text-left p-6">
-                <h3 class="text-3xl font-bold text-white drop-shadow-md mb-1">簡單使用</h3>
-                <p class="text-lg font-medium text-gray-200 drop-shadow-md">掃碼即可聯絡</p>
+
+            <!-- Feature 3: Durability -->
+            <div>
+              <img src="https://github.com/AltheaCoding/image-hosting/blob/main/Solution_%20(1).png?raw=true" alt="防水耐用" class="rounded-3xl shadow-xl w-full h-auto object-cover aspect-square mb-6">
+              <div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-4">
+                  <span class="bg-yellow-200 px-4 py-1 inline-block transform -skew-x-12">防水耐用：</span>
+                </h3>
+                <p class="text-lg text-gray-600 leading-relaxed">防水耐用，無需使用電池，不怕緊急沒電。</p>
               </div>
             </div>
-            <div class="relative group rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden aspect-[21/9]">
-              <img src="https://github.com/AltheaCoding/image-hosting/blob/main/Multiple%20Designs%20%20Kids%20Love%20Them.png?raw=true" alt="多種款式" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-              <div class="relative h-full flex flex-col justify-end items-start text-left p-6">
-                <h3 class="text-3xl font-bold text-white drop-shadow-md mb-1">多種款式</h3>
-                <p class="text-lg font-medium text-gray-200 drop-shadow-md">孩子喜愛!也不怕丟!</p>
+
+            <!-- Feature 4: Reliability -->
+            <div>
+              <img src="https://github.com/AltheaCoding/image-hosting/blob/main/Solution_%20(4).png?raw=true" alt="重要訊息不漏接" class="rounded-3xl shadow-xl w-full h-auto object-cover aspect-square mb-6">
+              <div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-4">
+                  <span class="bg-yellow-200 px-4 py-1 inline-block transform -skew-x-12">重要訊息不漏接：</span>
+                </h3>
+                <p class="text-lg text-gray-600 leading-relaxed">一眼識別，孩子相關訊息，免安裝 APP。</p>
               </div>
             </div>
           </div>
@@ -397,7 +455,7 @@
                 <div class="flex-1 pr-4">
                   <div class="flex items-start">
                     <span class="text-lg font-bold text-gray-800 mr-3">Q.</span>
-                    <span class="text-lg font-semibold text-slate-800">我選擇A方案，可以登記兩個不同的QR嗎？</span>
+                    <span class="text-lg font-semibold text-slate-800">誰能看到 QR code？會不會被陌生人濫用？</span>
                   </div>
                 </div>
                 <span class="transform transition-transform duration-300 mt-1 flex-shrink-0 rotate-180">
@@ -408,7 +466,75 @@
                 <div class="overflow-hidden">
                   <div class="flex items-start pl-8 text-slate-600">
                     <span class="font-bold mr-3">A.</span>
-                    <p class="whitespace-pre-line flex-1">我們只有B、C方案可以登記1個以上3個以下QR code。</p>
+                    <p class="whitespace-pre-line flex-1">👉 QR code 本身不會顯示任何個資。掃描後只會開啟我們的帳號——不會顯示電話、姓名或住址。對方只能留言，我們再安全地轉發給您。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="faq-item border-b border-slate-200 py-4">
+              <button class="w-full flex justify-between items-start text-left focus:outline-none" aria-expanded="false">
+                <div class="flex-1 pr-4">
+                  <div class="flex items-start">
+                    <span class="text-lg font-bold text-gray-800 mr-3">Q.</span>
+                    <span class="text-lg font-semibold text-slate-800">如果有人惡作劇亂掃怎麼辦？</span>
+                  </div>
+                </div>
+                <span class="transform transition-transform duration-300 mt-1 flex-shrink-0 rotate-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                </span>
+              </button>
+              <div class="faq-answer grid grid-rows-[0fr] transition-all duration-500 ease-in-out">
+                <div class="overflow-hidden">
+                  <div class="flex items-start pl-8 text-slate-600">
+                    <span class="font-bold mr-3">A.</span>
+                    <p class="whitespace-pre-line flex-1">👉 系統有過濾機制，垃圾訊息不會被轉發。您只會收到有意義的通知（像「找到書包」或「找到孩子物品」）。若對訊息有疑慮，可以封鎖此訊息條或換新的 QR code。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-8 pb-2">
+                <h3 class="text-2xl font-bold text-slate-700">💡 使用方式</h3>
+            </div>
+
+            <div class="faq-item border-b border-slate-200 py-4">
+              <button class="w-full flex justify-between items-start text-left focus:outline-none" aria-expanded="false">
+                <div class="flex-1 pr-4">
+                  <div class="flex items-start">
+                    <span class="text-lg font-bold text-gray-800 mr-3">Q.</span>
+                    <span class="text-lg font-semibold text-slate-800">系統如何通知我？</span>
+                  </div>
+                </div>
+                <span class="transform transition-transform duration-300 mt-1 flex-shrink-0 rotate-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                </span>
+              </button>
+              <div class="faq-answer grid grid-rows-[0fr] transition-all duration-500 ease-in-out">
+                <div class="overflow-hidden">
+                  <div class="flex items-start pl-8 text-slate-600">
+                    <span class="font-bold mr-3">A.</span>
+                    <p class="whitespace-pre-line flex-1">👉 您會立刻收到 Line 機器人的訊息，例如：「有人找到與您孩子標籤連結的書包。」</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="faq-item border-b border-slate-200 py-4">
+              <button class="w-full flex justify-between items-start text-left focus:outline-none" aria-expanded="false">
+                <div class="flex-1 pr-4">
+                  <div class="flex items-start">
+                    <span class="text-lg font-bold text-gray-800 mr-3">Q.</span>
+                    <span class="text-lg font-semibold text-slate-800">如果對方沒有用 Line 怎麼辦？</span>
+                  </div>
+                </div>
+                <span class="transform transition-transform duration-300 mt-1 flex-shrink-0 rotate-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                </span>
+              </button>
+              <div class="faq-answer grid grid-rows-[0fr] transition-all duration-500 ease-in-out">
+                <div class="overflow-hidden">
+                  <div class="flex items-start pl-8 text-slate-600">
+                    <span class="font-bold mr-3">A.</span>
+                    <p class="whitespace-pre-line flex-1">👉 當對方掃QRcode時，會跳出是否開啟line app，若選擇否，葉面會跳轉到「網頁表單」，即使沒有 Line，對方也能留言，我們會再轉送到您的 Line。</p>
                   </div>
                 </div>
               </div>
@@ -429,8 +555,14 @@
                 <div class="overflow-hidden">
                   <div class="flex items-start pl-8 text-slate-600">
                     <span class="font-bold mr-3">A.</span>
-                    <p class="whitespace-pre-line flex-1">AirTagr價格高昂又容易用丟，GPS 需要充電，而且通常只能放在一件物品上（像書包）。我們的 QR code 標籤便宜、不需充電，可以貼在多處。
-也不會持續追蹤孩子位置，暴露孩子、住家位置，以及家庭偏好的日常路線。但卻能讓好心人安全地聯繫到您——而不會暴露隱私。</p>
+                    <div class="flex-1 space-y-4">
+                        <p>👉 將 AirTag 放在孩子身上時，如果綁定的手機不在孩子身邊，在孩子附近的人會收到「偵測到 AirTag」的通知。</p>
+                        <p>這可以讓對方可以看到孩子的移動軌跡，進而無形中洩露您家的位置。</p>
+                        <p>此外，不論是 GPS 手錶還是 AirTag，都有電量耗盡與遺失的風險，一旦沒電，保護功能就失去作用，價格也並不便宜。</p>
+                        <p>為了孩子的安全，多一層保障就多一份安心。</p>
+                        <p>除了單一設備，選擇一個經濟實惠又可靠的備援方案，才能真正守護每一次出門的平安。</p>
+                        <p class="text-sm text-slate-500">出處 : Apple官網 - <a href="https://support.apple.com/zh-tw/119874" target="_blank" rel="noopener noreferrer" class="underline hover:text-green-600">如果收到提示指出有 AirTag、AirPods、「尋找」網絡配件或相容的藍牙位置追蹤裝置在你身邊，該如何處理</a></p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -491,8 +623,29 @@
         };
 
         menuButton.addEventListener('click', () => toggleMenu());
-        mobileMenu.querySelectorAll('a').forEach(link => {
-          link.addEventListener('click', () => toggleMenu(true));
+
+        // --- Smooth Scrolling & Mobile Menu Link Handling ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+
+                if (targetId === '#') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else if (targetId && targetId.length > 1) {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+
+                // Close the mobile menu if it is currently open
+                if (mobileMenu.classList.contains('opacity-100')) {
+                    toggleMenu(true);
+                }
+            });
         });
 
         // --- FAQ Accordion ---
@@ -502,21 +655,29 @@
           button.addEventListener('click', () => {
             const isExpanded = button.getAttribute('aria-expanded') === 'true';
 
-            // Close all items
+            // Close all items before opening the new one
             faqItems.forEach(otherItem => {
-              otherItem.querySelector('button').setAttribute('aria-expanded', 'false');
-              otherItem.querySelector('.faq-answer').classList.remove('grid-rows-[1fr]', 'mt-2');
-              otherItem.querySelector('.faq-answer').classList.add('grid-rows-[0fr]');
-              otherItem.querySelector('svg').parentElement.classList.remove('rotate-180');
+              if (otherItem !== item) {
+                otherItem.querySelector('button').setAttribute('aria-expanded', 'false');
+                otherItem.querySelector('.faq-answer').classList.remove('grid-rows-[1fr]', 'mt-2');
+                otherItem.querySelector('.faq-answer').classList.add('grid-rows-[0fr]');
+                otherItem.querySelector('svg').parentElement.classList.remove('rotate-180');
+              }
             });
             
-            // Open the clicked one if it was closed
+            // Toggle the clicked one
             if (!isExpanded) {
               button.setAttribute('aria-expanded', 'true');
               const answer = item.querySelector('.faq-answer');
               answer.classList.add('grid-rows-[1fr]', 'mt-2');
               answer.classList.remove('grid-rows-[0fr]');
               button.querySelector('svg').parentElement.classList.add('rotate-180');
+            } else {
+              button.setAttribute('aria-expanded', 'false');
+              const answer = item.querySelector('.faq-answer');
+              answer.classList.remove('grid-rows-[1fr]', 'mt-2');
+              answer.classList.add('grid-rows-[0fr]');
+              button.querySelector('svg').parentElement.classList.remove('rotate-180');
             }
           });
         });
@@ -528,8 +689,8 @@
             const closeButton = card.querySelector('.use-case-close');
 
             card.addEventListener('click', (e) => {
-                // Prevent opening if the click is on the close button itself
-                if (e.target !== closeButton && !closeButton.contains(e.target)) {
+                // Prevent opening if the click is on the close button itself or its children
+                if (!closeButton.contains(e.target)) {
                    overlay.classList.add('opacity-100', 'translate-y-0');
                    overlay.classList.remove('opacity-0', '-translate-y-full', 'pointer-events-none');
                 }
