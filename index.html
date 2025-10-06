@@ -120,7 +120,7 @@
                 <div class="absolute inset-0 bg-cyan-100/60 rounded-full blur-xl"></div>
                 <img src="https://github.com/AltheaCoding/image-hosting/blob/main/Problem_1%20(2).PNG?raw=true" alt="擔心資料外洩" class="relative w-full h-full object-contain">
               </div>
-              <p class="text-xs sm:text-sm lg:text-base text-gray-700 font-medium leading-relaxed">父母希望孩子隨身有聯絡方式，但擔心資料外洩。</p>
+              <p class="text-xs sm:text-sm lg:text-base text-gray-700 font-medium leading-relaxed mt-2">父母顧慮隱私：<br>希望孩子可被聯繫，又怕資料公開外洩。</p>
             </div>
             <!-- Problem 2 -->
             <div class="flex flex-col items-center text-center">
@@ -128,7 +128,7 @@
                 <div class="absolute inset-0 bg-cyan-100/60 rounded-full blur-xl"></div>
                 <img src="https://github.com/AltheaCoding/image-hosting/blob/main/Problem_1%20(5).PNG?raw=true" alt="陌生電話不接" class="relative w-full h-full object-contain">
               </div>
-              <p class="text-xs sm:text-sm lg:text-base text-gray-700 font-medium leading-relaxed">現代人多不接、不回撥陌生電話，緊急情況容易錯失聯繫。</p>
+              <p class="text-xs sm:text-sm lg:text-base text-gray-700 font-medium leading-relaxed mt-2">陌生電話不接：<br>多數人不接、不回陌生來電，錯失聯繫。</p>
             </div>
             <!-- Problem 3 -->
             <div class="flex flex-col items-center text-center">
@@ -136,7 +136,7 @@
                 <div class="absolute inset-0 bg-cyan-100/60 rounded-full blur-xl"></div>
                 <img src="https://github.com/AltheaCoding/image-hosting/blob/main/Problem_1%20(4).PNG?raw=true" alt="孩子緊張說不出話" class="relative w-full h-full object-contain">
               </div>
-              <p class="text-xs sm:text-sm lg:text-base text-gray-700 font-medium leading-relaxed">緊急時，孩子可能因緊張或受傷說不出正確聯絡資訊。</p>
+              <p class="text-xs sm:text-sm lg:text-base text-gray-700 font-medium leading-relaxed mt-2">孩子說不出話：<br>緊張或受傷時，難以表達聯絡資訊。</p>
             </div>
             <!-- Problem 4 -->
             <div class="flex flex-col items-center text-center">
@@ -144,7 +144,7 @@
                 <div class="absolute inset-0 bg-cyan-100/60 rounded-full blur-xl"></div>
                 <img src="https://github.com/AltheaCoding/image-hosting/blob/main/Problem_1%20(3).PNG?raw=true" alt="物品遺失" class="relative w-full h-full object-contain">
               </div>
-              <p class="text-xs sm:text-sm lg:text-base text-gray-700 font-medium leading-relaxed">物品遺失也能安全歸還，無需公開姓名或地址。</p>
+              <p class="text-xs sm:text-sm lg:text-base text-gray-700 font-medium leading-relaxed mt-2">物品遺失：<br>可安全歸還，無需公開個資。</p>
             </div>
             <!-- Problem 5 -->
             <div class="flex flex-col items-center text-center">
@@ -152,7 +152,7 @@
                 <div class="absolute inset-0 bg-cyan-100/60 rounded-full blur-xl"></div>
                 <img src="https://github.com/AltheaCoding/image-hosting/blob/main/Problem_1%20(1).png?raw=true" alt="聯絡方式過時" class="relative w-full h-full object-contain">
               </div>
-              <p class="text-xs sm:text-sm lg:text-base text-gray-700 font-medium leading-relaxed">電話少人打、Line又封鎖陌生訊息，孩子該記什麼聯絡方式？</p>
+              <p class="text-xs sm:text-sm lg:text-base text-gray-700 font-medium leading-relaxed mt-2">聯絡方式選擇：<br>電話少用、Line封陌訊，孩子背哪個?</p>
             </div>
           </div>
         </div>
@@ -797,8 +797,12 @@
         // --- Smooth scrolling for navigation links ---
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
+                if (this.id === 'terms-link' || this.id === 'privacy-link') {
+                    return; // Let modal logic handle it
+                }
+
                 const targetId = this.getAttribute('href');
-                // Prevent scroll for modal triggers
+                
                 if (targetId === '#') {
                     e.preventDefault();
                     window.scrollTo({
@@ -807,6 +811,7 @@
                     });
                     return;
                 }
+
                 const targetElement = document.querySelector(targetId);
                 if(targetElement) {
                     e.preventDefault();
